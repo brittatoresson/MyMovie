@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import Search from "./Pages/Search";
 import History from "./Pages/History";
 import LandingPage from "./Pages/LandingPage";
+import Movies from "./Pages/Movies";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/search" element={<Search />}></Route>
+          <Route path="/movie" element={<Movies />}></Route>
           <Route path="/history" element={<History />}></Route>
         </Routes>
       </BrowserRouter>
