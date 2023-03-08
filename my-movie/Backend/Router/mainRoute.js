@@ -6,26 +6,35 @@ const routes = express.Router();
 dotenv.config({ path: "my-movie/Backend/config.env" });
 const key = process.env.API_KEY || "a2304d5d";
 
-//GET all by title/id
+//GET by title/id
 routes.route("/api/movie/:id").get(async function (req, res) {
   const imdbId = req.params.id;
-  let title = "inception";
-  // const uri = `https://www.omdbapi.com/?t=${title}&=json&apikey=a2304d5d`;
-  const uri = `https://www.omdbapi.com/?i=${imdbId}&y=&plot=short&apikey=a2304d5d`;
+  const uri = `https://www.omdbapi.com/?i=${imdbId}&y=&plot=short&apikey=${key}`;
+  let movie;
 
   await fetch(uri)
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .then((data) => (movie = data));
+  res.json(movie);
 });
 
-//GET array of movies for title
+//GET array of movies by title adn year (optional)
 routes.route("/api/movies").get(async function (req, res) {
-  const uri = `https://www.omdbapi.com/?s=inception&=json&apikey=${key}`;
-  let movies;
-  await fetch(uri)
-    .then((res) => res.json())
-    .then((data) => (movies = data));
-  res.json(movies);
+  let searchValue = req.headers.searchvalue;
+  let year = req.headers.year;
+  let movies = [];
+
+  try {
+    // const uri = `https://www.omdbapi.com/?s=${searchValue}&y=${year}=json&apikey=${key}`; ORGINAAAL
+    const uri = `https://www.omdbapi.com/?s=${searchValue}&y=${year}&apikey=${key}`;
+    await fetch(uri)
+      .then((res) => res.json())
+      .then((data) => (movies = data));
+    res.json(movies);
+  } catch {
+    console.log("an error occurred please try again");
+    res.json({ Error: "An error occurred please try again" });
+  }
 });
 
 //GET object from ID

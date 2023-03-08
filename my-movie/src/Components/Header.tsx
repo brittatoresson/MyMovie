@@ -4,8 +4,8 @@ import Heading from "./Heading";
 function Header() {
   return (
     <header>
+      <Heading></Heading>
       <nav>
-        <Heading></Heading>
         <Link to="/">Home</Link>
         <Link to="/search">Search</Link>
         <Link to="/history">History</Link>

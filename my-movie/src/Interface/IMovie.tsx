@@ -4,15 +4,19 @@ export interface IMovie {
   Poster?: string;
   Year: string;
   Type: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Plot: string;
+  Actors: string;
   //   uri: string;
-  //   genre: string;
-  //   director: string;
-  //   writer: string;
-  //   plot: string;
   //   rating: IRating[];
 }
 export interface IMovies {
   Search: IMovie[];
+  totalResults: string;
+  Response: string;
+  Error?: string;
 }
 
 interface IRating {
