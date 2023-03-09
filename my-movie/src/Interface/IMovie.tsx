@@ -9,7 +9,6 @@ export interface IMovie {
   Writer: string;
   Plot: string;
   Actors: string;
-  //   uri: string;
   //   rating: IRating[];
 }
 export interface IMovies {

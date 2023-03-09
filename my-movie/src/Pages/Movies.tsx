@@ -14,16 +14,12 @@ function Movies() {
     GetMovies();
   }, []);
 
-  function SaveToFavorites(id: string): void {
-    sessionStorage.setItem("saveToFavorite", id);
-    // SPARA MED POST ISTÄLLET???
-    // const response = await fetch(`http://localhost:3001/api/movies`, {
-    //   method: "GET",
-    //   headers: {
-    //     year: `${Year}`,
-    //     searchValue: InputValue,
-    //   },
-    // });
+  async function SaveToFavorites(movie: IMovie) {
+    const response = await fetch(`http://localhost:3001/api/favorites`, {
+      method: "POST",
+      body: JSON.stringify({ favorite: movie }),
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   return (
@@ -39,7 +35,9 @@ function Movies() {
           <li>Writer: {movie.Writer}</li>
           <br></br>
           <li>Actors: {movie.Actors}</li>
-          <li onClick={() => SaveToFavorites(movie.imdbID)}> ❤️ 🔆</li>
+          <li onClick={() => SaveToFavorites(movie)} className="blinkHeart">
+            &hearts;
+          </li>
         </ul>
       ) : (
         <p>enter title</p>

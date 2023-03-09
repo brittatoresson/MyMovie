@@ -49,16 +49,6 @@ input {
   cursor: pointer;
 }
 
-input[type="submit"] {
-  background-color: var(--light-bg-color);
-  color: var(--text-color);
-  margin: 2rem;
-  border: 2px solid var(--light-accent-color);
-}
-input[type="submit"]:hover {
-  background-color: var(--dark-accent-color);
-  color: var(--text-color);
-}
 input::placeholder {
   color: var(--text-color);
 }
@@ -68,10 +58,20 @@ input:focus {
   background-color: var(--text-color);
   color: var(--dark-accent-color);
   border: 3px solid var(--dark-accent-color);
+}
+input:focus::placeholder {
+  color: var(--dark-accent-color);
+}
 
-  input::placeholder {
-    color: var(--dark-accent-color);
-  }
+input[type="submit"] {
+  background-color: var(--light-bg-color);
+  color: var(--text-color);
+  margin: 2rem;
+  border: 2px solid var(--light-accent-color);
+}
+input[type="submit"]:hover {
+  background-color: var(--dark-accent-color);
+  color: var(--text-color);
 }
 
 ul {
@@ -104,4 +104,21 @@ img {
 
 .bold {
   font-weight: bolder;
+}
+
+.blinkHeart {
+  animation: blink 1.5s ease-in 2;
+  transform: scale(1.2);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }

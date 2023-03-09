@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { IMovies } from "../Interface/IMovie";
 import { useNavigate } from "react-router-dom";
+import movieImg from "../Assets/movieImg.jpg";
 
 function Search() {
   const [movies, setMovies] = useState<IMovies>();
@@ -53,7 +54,6 @@ function Search() {
             value={Year}
           ></input>
           <input type="submit" placeholder="Search" value="Search" />
-
           {movies?.Search ? `${movies.totalResults} results` : movies?.Error}
         </form>
 
@@ -61,9 +61,13 @@ function Search() {
           movies.Search.map((movie, i) => {
             return (
               <ul key={i} onClick={() => ShowDetails(movie.imdbID)}>
-                <img src={movie.Poster} />
+                {movie.Poster != "N/A" ? (
+                  <img src={movie.Poster} />
+                ) : (
+                  <img src={movieImg}></img>
+                )}
                 <li className="bold">{movie.Title}</li>
-                <li>year: {movie.Year}</li>
+                <li>({movie.Year})</li>
               </ul>
             );
           })
