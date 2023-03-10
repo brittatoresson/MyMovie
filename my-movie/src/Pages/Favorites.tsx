@@ -30,7 +30,10 @@ function Favorites() {
       {favoriteMovies
         ? favoriteMovies.map((item: IMovie, i) => (
             <ul key={i}>
-              <li onClick={() => DeleteFavorite(item.imdbID)}>{item.Title}</li>
+              <li onClick={() => DeleteFavorite(item.imdbID)}>
+                {item.Title} ({item.Year})
+              </li>
+              <img src={item.Poster}></img>
             </ul>
           ))
         : null}

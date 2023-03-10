@@ -4,11 +4,11 @@ I denna applikation kan du söka efter filmer och serier från API:et https://ww
 
 ### `npm start`
 
-I projektet my-movie startas applikationen genom att köra "npm start" i konsollen
+I projektet my-movie startas applikationen genom att köra "npm start" i konsolen
 
 ### `npm run dev`
 
-I projektet my-movie/backend startas servern genom att köra "npm run dev" i konsollen
+I projektet my-movie/backend startas servern genom att köra "npm run dev" i konsolen
 
 ### enhancements
 

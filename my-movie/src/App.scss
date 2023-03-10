@@ -188,6 +188,14 @@ svg {
 
 // DESKTOP
 @media screen and (min-width: 480px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  nav {
+    width: 40vw;
+  }
   form {
     width: 25vw;
     padding: 2rem;
