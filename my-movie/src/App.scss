@@ -7,13 +7,19 @@
 }
 @font-face {
   font-family: bold;
-  src: url("./Assets/hbologosupplement.ttf");
+  src: url("./Assets/HBOfont.ttf");
 }
 
 body {
   text-align: center;
   color: var(--text-color);
   background: var(--dark-bg-color);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 form {
@@ -27,10 +33,12 @@ header {
   font-family: bold;
   letter-spacing: 2px;
 }
+
 nav {
   display: flex;
   justify-content: space-around;
 }
+
 a {
   color: var(--text-color);
   text-decoration: none;
@@ -39,6 +47,7 @@ a {
 a:hover {
   color: var(--light-accent-color);
 }
+
 input {
   outline: none;
   border: none;
@@ -59,6 +68,7 @@ input:focus {
   color: var(--dark-accent-color);
   border: 3px solid var(--dark-accent-color);
 }
+
 input:focus::placeholder {
   color: var(--dark-accent-color);
 }
@@ -84,12 +94,39 @@ ul {
 
 img {
   height: 60vw;
+  margin-top: 1rem;
 }
-#search_container {
+
+footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--dark-accent-color);
+}
 
+footer ul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+
+  li {
+    padding: 10px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+}
+
+#landing_page_container,
+#search_container,
+#favorites_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 2rem;
   ul:hover {
     cursor: pointer;
     transform: scale(1.1);
@@ -98,7 +135,7 @@ img {
 
 #movie_container {
   img {
-    height: 100%;
+    height: 50vh;
   }
 }
 
@@ -107,8 +144,34 @@ img {
 }
 
 .blinkHeart {
-  animation: blink 1.5s ease-in 2;
-  transform: scale(1.2);
+  animation: blink 2.5s ease-in 2;
+  transform: scale(1.4);
+  margin-left: 1rem;
+  cursor: pointer;
+  color: var(--light-accent-color);
+}
+.blinkHeart:hover {
+  transform: scale(1.6);
+  stroke-width: 2%;
+}
+
+.activeHeart {
+  background-color: var(--light-accent-color);
+  color: white;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+}
+
+.logo img {
+  height: 5vh;
+  margin: 0;
+  background-color: var(--light-accent-color);
+}
+
+svg {
+  outline: none;
+  border: none;
 }
 
 @keyframes blink {
@@ -120,5 +183,31 @@ img {
   }
   100% {
     opacity: 1;
+  }
+}
+
+// DESKTOP
+@media screen and (min-width: 480px) {
+  form {
+    width: 25vw;
+    padding: 2rem;
+  }
+
+  #search_result_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #movie_container {
+    display: flex;
+    justify-content: center;
+    li {
+      max-width: 50vw;
+    }
+  }
+
+  img {
+    height: 40vw;
   }
 }

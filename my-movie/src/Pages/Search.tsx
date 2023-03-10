@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import { IMovies } from "../Interface/IMovie";
 import { useNavigate } from "react-router-dom";
-import movieImg from "../Assets/movieImg.jpg";
+import poster from "../Assets/defaultPoster.jpg";
+import Footer from "../Components/Footer";
 
 function Search() {
   const [movies, setMovies] = useState<IMovies>();
@@ -18,7 +19,6 @@ function Search() {
         searchValue: InputValue,
       },
     });
-
     setMovies(await response.json());
   }
 
@@ -27,11 +27,11 @@ function Search() {
     sessionStorage.setItem("imdbId", id);
   }
 
-  function GetInputValue(e: ChangeEvent<HTMLInputElement>): void {
+  function GetInputValue(e: ChangeEvent<HTMLInputElement>) {
     SetInputValue(e.target.value);
   }
 
-  function GetYear(e: ChangeEvent<HTMLInputElement>): void {
+  function GetYear(e: ChangeEvent<HTMLInputElement>) {
     let parseInput = parseInt(e.target.value);
     SetYear(parseInput);
   }
@@ -57,24 +57,27 @@ function Search() {
           {movies?.Search ? `${movies.totalResults} results` : movies?.Error}
         </form>
 
-        {movies?.Search ? (
-          movies.Search.map((movie, i) => {
-            return (
-              <ul key={i} onClick={() => ShowDetails(movie.imdbID)}>
-                {movie.Poster != "N/A" ? (
-                  <img src={movie.Poster} />
-                ) : (
-                  <img src={movieImg}></img>
-                )}
-                <li className="bold">{movie.Title}</li>
-                <li>({movie.Year})</li>
-              </ul>
-            );
-          })
-        ) : (
-          <p>Search for a movie title</p>
-        )}
+        <section id="search_result_container">
+          {movies?.Search ? (
+            movies.Search.map((movie, i) => {
+              return (
+                <ul key={i} onClick={() => ShowDetails(movie.imdbID)}>
+                  {movie.Poster != "N/A" ? (
+                    <img src={movie.Poster} />
+                  ) : (
+                    <img src={poster}></img>
+                  )}
+                  <li className="bold">{movie.Title}</li>
+                  <li>({movie.Year})</li>
+                </ul>
+              );
+            })
+          ) : (
+            <p>Search for a movie</p>
+          )}
+        </section>
       </>
+      <Footer></Footer>
     </section>
   );
 }
