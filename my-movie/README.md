@@ -15,3 +15,4 @@ I projektet my-movie/backend startas servern genom att köra "npm run dev" i kon
 - pagination
 - arrow to visit prev page
 - delete function in "favorite page"
+- add rating
