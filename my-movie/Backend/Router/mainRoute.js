@@ -7,7 +7,7 @@ dotenv.config({ path: "my-movie/Backend/config.env" });
 const key = process.env.API_KEY || "a2304d5d";
 let favorites = [];
 
-//GET by title/id
+//GET by id
 routes.route("/api/movie/:id").get(async function (req, res) {
   const imdbId = req.params.id;
   const uri = `https://www.omdbapi.com/?i=${imdbId}&y=&plot=short&apikey=${key}`;
@@ -17,21 +17,9 @@ routes.route("/api/movie/:id").get(async function (req, res) {
     .then((res) => res.json())
     .then((data) => (movie = data));
   res.json(movie);
-
-  //ADD try catch
-  // try {
-  //   const uri = `https://www.omdbapi.com/?i=${imdbId}&y=&plot=short&apikey=${key}`;
-  //   await fetch(uri)
-  //     .then((res) => res.json())
-  //     .then((data) => (movie = data));
-  //   res.json(movies);
-  // } catch {
-  //   console.log("an error occurred please try again");
-  //   res.json({ Error: "An error occurred please try again" });
-  // }
 });
 
-//GET array of movies by title adn year (optional)
+//GET array of movies by title and year (optional)
 routes.route("/api/movies").get(async function (req, res) {
   let searchValue = req.headers.searchvalue;
   let year = req.headers.year;
@@ -56,7 +44,7 @@ routes.route("/api/favorites").get(function (req, res) {
   }
 });
 
-//POST new movie to favorie
+//POST new movie to favorite
 routes.route("/api/favorites").post(function (req, res) {
   let favorite = req.body.favorite;
   favorites.push(favorite);
